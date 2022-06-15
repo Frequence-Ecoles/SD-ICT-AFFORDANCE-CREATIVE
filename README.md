@@ -56,11 +56,21 @@ Texte sur cartel imprimé
 > Par exemple, dans l'interface que tu viens d'essayer, rien n'est affordant // trouver synonimes, précisions . Si tu ne sais pas ce qu'il va se produire avant d’appuyer sur un bouton, tu ne contrôles pas tes actions. Résultat : tu ne contrôles pas ton outil numérique.
 >
 
-Au contraire, sur youtube ou beaucoup d'autres, tu sais que si tu appuies sur cette icône 🔎, tu vas accéder à une recherche. Tu connais ce symbole, et tu connais la fonction à laquelle il correspond. On dit de ce bouton qu'il est **affordant**.
+Au contraire, sur youtube ou beaucoup d'autres, tu sais que si tu appuies sur cette icône 🔎, tu vas accéder à une recherche.
+
+> Petit jeu —— Pour faire une recherche sur youtube, qu'est-ce que tu fais ?
+> - Schémas d'explication // illustrations de l'interface de youtube
+> En effet, tu vas appuyer sur la loupe. Et comme la loupe, tu connais la signification de beaucoup de ces symboles.
+>
+> Petit jeu —— Réassocie les icones à leur fonction !
+> Utiliser les Google material Icons -> archétype du langage iconographique universel
+
+Trouver un moyen de bien relier ça à l'affordance, d'utiliser l'exemple pour expliquer et pas juste l'exemple pour l'exemple.
+
+Tu connais ce symbole, et tu connais la fonction à laquelle il correspond. On dit de ce bouton qu'il est **affordant**.
 C'est ce qui te permet de naviguer même dans une interface que tu ne connais pas, car ces codes sont communs, et tu t'y habitues probablement depuis déjà plusieurs années.
 // faire passer ça en schéma
 
->
 > [En images, pictogrammes, plusieurs symboles qu'on connait] ➔ ♡ ☆
 
 
