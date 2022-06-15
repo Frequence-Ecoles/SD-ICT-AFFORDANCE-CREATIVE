@@ -371,9 +371,6 @@ function draw() {
 
   // ———— CHECK FOR VICTORY ———————
 
-
-
-
   if (backgroundColor === RVB[1] && shapesCount === 1 && numberOfShapes === 6 && backShapes === 3 && outlineWeight >= 10 && outlineWeight <= 30) {
     // window.alert('BAM VICTOIRE'); // alert n'est pas une bonne solution - ça fait sauter le plein écran
 
