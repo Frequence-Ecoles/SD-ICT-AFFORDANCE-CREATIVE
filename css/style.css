@@ -1,5 +1,69 @@
+@font-face {
+ font-family: "Dosis";
+ src: url("../assets/fonts/Dosis-VariableFont_wght.ttf");
+}
+
+
+:root {
+  --typo: "Dosis";
+  --background: #20124D;
+  --buttons: #20124D;
+  --borders: #FF3246;
+}
+
+*{
+  font-family: var(--typo);
+}
+
+body {
+  overflow: hidden;
+}
+
+
+
+/* ———— START - SCREEN ————— */
+
+.hide {
+  display: none !important;
+}
+
+#start-screen {
+  width: 100%;
+  height: 100vh;
+
+  background-color : var(--buttons);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+}
+
+#start-screen h2 {
+  /* font-size: 3rem; */
+  font-family: var(--typo), sans-serif;
+  color: var(--borders);
+  font-size: 4rem;
+  font-weight: bold;
+
+  margin: 60px;
+}
+
+#start-screen .controller-btn {
+  min-height: 25vw;
+  min-width: 25vw;
+
+  font-size: 2rem;
+}
+
+
+/* ——— MAIN - EDITOR ——— */
+
+
 main {
-  background-color: #ffffef;
+  background-color: var(--background);
 }
 
 h1 {
@@ -14,6 +78,11 @@ h1 {
   justify-content: space-around;
 }
 
+#canvasContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 canvas {
   /* background-color: blue; */
   max-height: 85vh !important;
@@ -24,8 +93,8 @@ canvas {
   border-radius: 25px;
   /* border: solid 3px black; */
 
-  border: 4px solid #422800;
-  box-shadow: #422800 4px 4px 0 0;
+  border: 4px solid var(--borders);
+  box-shadow: var(--borders) 4px 4px 0 0;
 
   transform-origin: center;
   /* transform: rotate(20deg); */
@@ -74,17 +143,19 @@ canvas {
 
 }
 
-/* CSS */
+/* ——— CONTROLLERS - BUTTONS ——— */
+
+
 .controller-btn {
-  background-color: #fbeee0;
-  border: 2px solid #422800;
+  background-color: var(--buttons);
+  border: 2px solid var(--borders);
   min-height: 10vw;
   min-width: 10vw;
 
   margin:3vw;
   border-radius: 50%;
-  box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
+  box-shadow: var(--borders) 4px 4px 0 0;
+  color: var(--borders);
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
@@ -110,11 +181,11 @@ canvas {
 }
 
 .controller-btn:hover {
-  background-color: #fbeee0;
+  background-color: var(--buttons);
 }
 
 .controller-btn:active {
-  box-shadow: #422800 2px 2px 0 0;
+  box-shadow: var(--borders) 2px 2px 0 0;
   transform: translate(2px, 2px);
 }
 
@@ -124,43 +195,74 @@ canvas {
   }
 }
 
+/* ——— VICTORY - BOX ——— */
+
 .victory-box {
   background-color: green;
-  width: 500px;
-  height: 400px;
+  max-width: 30vw;
 
-  background-color: #fbeee0;
-  border: 2px solid #422800;
-  box-shadow: #422800 4px 4px 0 0;
+  margin-left: 50px;
 
-  border-radius: 20px;
-
+  background-color: var(--buttons);
+  border-radius: 25px;
+  border: 4px solid var(--borders);
+  box-shadow: var(--borders) 4px 4px 0 0;
 
   /* top: 0; */
   /* left: 0; */
 
-  position: absolute;
+  /* position: absolute; */
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+}
 
-  text-align: center;
+.victory-box h2 {
   font-size: 4rem;
-  font-family: sans-serif;
+  /* font-family: var(--typo), sans-serif; */
+  margin: 15px;
+  font-weight: bold;
+  color: var(--borders);
+}
 
+.victory-box p {
+  font-size: 2rem;
+  /* font-family: var(--typo), sans-serif; */
+  margin: 15px;
+  color: white;
+}
+
+.victory-box button {
+  background-color: var(--borders);
+  border: 2px solid var(--borders);
+  padding: 15px;
+  border-radius: 15px;
+
+  margin: 15px;
+  color: white;
+  font-size: 1.8rem;
+
+  /* position: relative; */
+  margin-top: auto;
+  bottom: 0;
+  right: 0;
+  margin-left: auto;
+
+  max-width: 70%;
+}
+
+.victory-shake {
   animation: shakeForVictory 3s;
   animation-iteration-count: infinite;
-
 }
 
 @keyframes shakeForVictory {
   0% { transform:  scale(1) rotate(0deg); }
-  5% { transform:  scale(1.1) rotate(-5deg); }
-  10% { transform:  scale(1.1) rotate(5deg); }
-  15% { transform:  scale(1.1) rotate(0deg); }
-  20% { transform:  scale(1.1) rotate(5deg); }
-  25% { transform:  scale(1.1) rotate(-5deg); }
+  5% { transform:  scale(1.01) rotate(-2deg); }
+  10% { transform:  scale(1.01) rotate(2deg); }
+  15% { transform:  scale(1.01) rotate(0deg); }
+  20% { transform:  scale(1.01) rotate(2deg); }
+  25% { transform:  scale(1.01) rotate(-2deg); }
   30% { transform:  scale(1) rotate(0deg); }
   35% { transform: scale(1) translate(0) rotate(0); }
 }

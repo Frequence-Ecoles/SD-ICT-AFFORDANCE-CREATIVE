@@ -1,3 +1,22 @@
+
+// ———————— START SCREEN TOGGLE ———— //
+
+var victoryTriggerAvailable = false;
+
+const startScreen = document.getElementById('start-screen');
+const startBtn = document.getElementById('start-btn');
+
+startBtn.addEventListener('click', function(){
+  startScreen.classList.add('hide');
+  victoryBox.classList.add('hide');
+
+  createButtons();
+  victoryTriggerAvailable = true;
+});
+
+
+// ———————————— CANVAS SETUP ————————
+
 const canvasSize = 95 / 100 * window.innerHeight;
 
 const canvasContainer = document.getElementById('canvasContainer');
@@ -9,7 +28,6 @@ function setup() {
   console.log("ca c'est le canvas" + canvas);
 
 }
-
 
 // fullscreen
 var fullscreenAvailable = true;
@@ -28,9 +46,9 @@ var backShapes = 3; // formes des aplats arrière-plan
 var outlineWeight = 3; // épaisseur contours motifs
 
 const RVB = [
-  [
-    255, 0, 0
-  ],
+  // [
+  //   255, 0, 0
+  // ],
   [
     0, 255, 0
   ],
@@ -53,6 +71,12 @@ let randomizeIsActive = false; // trigger pour pas trop de crise d'épilepsie
 var colorIndex = 0; // compte pour parcourir le tableau de couleurs RVB
 
 var backgroundColor = RVB[colorIndex];
+
+
+
+
+
+
 
 // ———— DÉFINITION BOUTONS ET ADEVENTLISTENERS
 
@@ -168,6 +192,7 @@ const removeShake = () => {
 
 // randomize all parameters
 var drawRandom = () => {
+  victoryTriggerAvailable = false;
 
   backgroundColor = RVB[getRandomIntInclusive(0, RVB.length - 1)];
 
@@ -184,6 +209,8 @@ var drawRandom = () => {
   if (randomizeIsActive) {
     draw();
   }
+
+  victoryTriggerAvailable = true;
 
 }
 
@@ -244,6 +271,7 @@ const functionsArray = [
 functionsArray.sort(() => Math.random() - 0.5);
 
 // création des boutons
+const createButtons = () => {
 for (var i = 0; i < functionsArray.length; i++) {
   const button = document.createElement('button');
   button.classList.add('controller-btn');
@@ -259,6 +287,7 @@ for (var i = 0; i < functionsArray.length; i++) {
   }
   // attribution des différentes fonctions
   button.addEventListener('click', functionsArray[i][0]);
+}
 }
 
 // ——— check for fullscreen ————
@@ -299,7 +328,58 @@ function closeFullscreen() {
   }
 }
 
+// —————————— VICTORY TRIGGER ——————— 
 
+const removeChilds = (parent) => {
+    while (parent.lastChild) {
+        parent.removeChild(parent.lastChild);
+    }
+};
+
+var conditionsCleared = false;
+// var conditionsClear = false;
+
+var checkClearedCondidtions = () => {
+  if (
+    backgroundColor === RVB[1]
+    // && shapesCount === 1
+    // && numberOfShapes === 6
+    // && backShapes === 3
+    // && outlineWeight >= 10
+    // && outlineWeight <= 30
+  ) {
+     conditionsCleared = true;
+  } else {
+     conditionsCleared = false;
+  }
+}
+
+const victoryBox = document.getElementById('victory-box');
+
+const victoryTriggered = () => {
+  if (victoryTriggerAvailable) {
+
+  console.log('VICTORY TRIGGERED')
+  // window.alert('BAM VICTOIRE'); // alert n'est pas une bonne solution - ça fait sauter le plein écran
+  canvas.classList.add('victory-shake');
+  victoryBox.classList.remove('hide');
+  victoryBox.style.left = window.innerWidth/2 - 250 + "px";
+  victoryBox.style.top = window.innerHeight/2 - 200 + "px";
+
+  removeChilds(leftContainer);
+  removeChilds(rightContainer);
+
+}
+  
+}
+
+// ————— BACK TO START SCREEN ————— 
+
+const backToStart = () => {
+  canvas.classList.remove('victory-shake');
+  startScreen.classList.remove('hide');
+  randomize();
+}
 
 //———————————— BEGIN DRAW —————————
 
@@ -370,20 +450,9 @@ function draw() {
   // rect(0, 0, canvasSize, canvasSize)
 
   // ———— CHECK FOR VICTORY ———————
-
-  if (backgroundColor === RVB[1] && shapesCount === 1 && numberOfShapes === 6 && backShapes === 3 && outlineWeight >= 10 && outlineWeight <= 30) {
-    // window.alert('BAM VICTOIRE'); // alert n'est pas une bonne solution - ça fait sauter le plein écran
-
-
-    const victoryBox = document.createElement('div');
-    victoryBox.classList.add('victory-box');
-    victoryBox.innerHTML = " Bravo, tu as réussi ! "
-    elem.appendChild(victoryBox); // adding to body
-    victoryBox.style.left = window.innerWidth/2 - 250 + "px";
-    victoryBox.style.top = window.innerHeight/2 - 200 + "px";
-
-
-
+  checkClearedCondidtions();
+  if (conditionsCleared) {
+    victoryTriggered();
   }
 
 }

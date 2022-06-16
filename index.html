@@ -14,17 +14,30 @@
 <body>
   <!-- <h1>Affordance creative</h1> -->
 
+  <div id="start-screen">
+    <h2>Reproduis l'image en face de toi !</h2>
+    <button id="start-btn" type="button" name="button" class="controller-btn">Commencer</button>
+  </div>
+
   <main id="main-content">
 
     <div id="left-container" class="left-side-buttons buttons-containers"></div>
 
-    <div id="canvasContainer"></div>
+    <div id="canvasContainer">
+      <div id="victory-box" class="victory-box hide">
+        <h2>Bravo ! Tu as réussi !</h2>
+        <p>Tu as eu du mal à reproduire l'image, alors que tous les boutons dont tu avais besoin étaient devant toi ? On t'explique pourquoi !</p>
+        <button type="button" name="button" onclick="backToStart()">Recommencer</button>
+      </div>
+    </div>
 
     <div id="right-container" class="right-side-buttons buttons-containers"></div>
 
   </main>
 
   <!-- <button type="button" id="indications-button">REMOVE ALL INDICATIONS</button> -->
+
+
 
   <script type="text/javascript" src="js/script.js"></script>
 </body>
