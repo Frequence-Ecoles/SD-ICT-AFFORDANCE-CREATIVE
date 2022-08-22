@@ -71,6 +71,8 @@ Tu connais ce symbole, et tu connais la fonction à laquelle il correspond. On d
 C'est ce qui te permet de naviguer même dans une interface que tu ne connais pas, car ces codes sont communs, et tu t'y habitues probablement depuis déjà plusieurs années.
 // faire passer ça en schéma
 
+// ramener rapport au corps - assimiliation de ces codes / intuition / corps - gestes 
+
 > [En images, pictogrammes, plusieurs symboles qu'on connait] ➔ ♡ ☆
 
 
