@@ -1,19 +1,17 @@
-
-// ———————— START SCREEN TOGGLE ———— //
+// ———————— START SCREEN TOGGLE ————
 
 var victoryTriggerAvailable = false;
 
 const startScreen = document.getElementById('start-screen');
 const startBtn = document.getElementById('start-btn');
 
-startBtn.addEventListener('click', function(){
+startBtn.addEventListener('click', function() {
   startScreen.classList.add('hide');
   victoryBox.classList.add('hide');
-
   createButtons();
   victoryTriggerAvailable = true;
+  randomize();
 });
-
 
 // ———————————— CANVAS SETUP ————————
 
@@ -25,7 +23,6 @@ function setup() {
   let canvas = createCanvas(canvasSize, canvasSize);
 
   canvas.parent('canvasContainer');
-  console.log("ca c'est le canvas" + canvas);
 
 }
 
@@ -72,12 +69,6 @@ var colorIndex = 0; // compte pour parcourir le tableau de couleurs RVB
 
 var backgroundColor = RVB[colorIndex];
 
-
-
-
-
-
-
 // ———— DÉFINITION BOUTONS ET ADEVENTLISTENERS
 
 // on choppe les containers
@@ -117,7 +108,7 @@ const decreaseShapesNumber = () => {
     numberOfShapes -= 10;
 
   }
-  // console.log(numberOfShapes);
+  console.log(numberOfShapes);
   draw();
 }
 
@@ -133,19 +124,41 @@ const frontShapesForm = () => {
   draw();
 }
 
+// definition des differentes epaisseurs de contour possibles
+let outlineWeightsArray = [
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  20,
+  30,
+  40,
+  50,
+  60,
+  70
+]
+
+let outlineIndex = 7;
+
 // augmenter épaisseur du contour
 const increaseOutlineWeight = () => {
-  outlineWeight = Math.round(outlineWeight += 1 * (70 - numberOfShapes) / 5);
-  console.log(outlineWeight);
+  if (outlineIndex < 13) {
+    outlineIndex++;
+  }
+  outlineWeight = outlineWeightsArray[outlineIndex];
   draw();
 }
 
 // diminuer épaisseur du contour
 const decreaseOutlineWeight = () => {
-  if (outlineWeight > 3) {
-    outlineWeight = Math.round(outlineWeight -= 1 * (70 - numberOfShapes) / 5);
+  if (outlineIndex > 0) {
+    outlineIndex--;
   }
-  console.log(outlineWeight);
+  outlineWeight = outlineWeightsArray[outlineIndex];
   draw();
 }
 
@@ -204,7 +217,7 @@ var drawRandom = () => {
   backShapes = getRandomIntInclusive(1, 3);
 
   //
-  outlineWeight = getRandomIntInclusive(1, 7);
+  outlineIndex = getRandomIntInclusive(1, 7);
 
   if (randomizeIsActive) {
     draw();
@@ -230,7 +243,8 @@ const randomize = () => {
     setTimeout(function() {
       removeShake();
       clearInterval(randomLoop);
-      console.log("backgroundColor" + backgroundColor + " || " + "shapesCount" + shapesCount + " || " + "numberOfShapes" + numberOfShapes + " || " + "moduleSize" + moduleSize + " || " + "backShapes" + backShapes + " || " + "outlineWeight" + outlineWeight + " || ")
+      console.log("backgroundColor" + backgroundColor + " || " + "shapesCount" + shapesCount + " || " + "numberOfShapes" + numberOfShapes //+ " || " + "moduleSize" + moduleSize
+      + " || " + "backShapes" + backShapes + " || " + "outlineWeight" + outlineWeight + " || ")
       // setTimeout( function(){
       randomizeIsActive = false;
       // }, 2000);
@@ -272,22 +286,22 @@ functionsArray.sort(() => Math.random() - 0.5);
 
 // création des boutons
 const createButtons = () => {
-for (var i = 0; i < functionsArray.length; i++) {
-  const button = document.createElement('button');
-  button.classList.add('controller-btn');
+  for (var i = 0; i < functionsArray.length; i++) {
+    const button = document.createElement('button');
+    button.classList.add('controller-btn');
 
-  if (setIndications) {
-    button.innerHTML = String(functionsArray[i][1]); // sets indications
-  }
+    if (setIndications) {
+      button.innerHTML = String(functionsArray[i][1]); // sets indications
+    }
 
-  if (i >= functionsArray.length / 2) {
-    leftContainer.appendChild(button);
-  } else {
-    rightContainer.appendChild(button);
+    if (i >= functionsArray.length / 2) {
+      leftContainer.appendChild(button);
+    } else {
+      rightContainer.appendChild(button);
+    }
+    // attribution des différentes fonctions
+    button.addEventListener('click', functionsArray[i][0]);
   }
-  // attribution des différentes fonctions
-  button.addEventListener('click', functionsArray[i][0]);
-}
 }
 
 // ——— check for fullscreen ————
@@ -328,30 +342,102 @@ function closeFullscreen() {
   }
 }
 
-// —————————— VICTORY TRIGGER ——————— 
+// —————————— VICTORY TRIGGER ———————
 
 const removeChilds = (parent) => {
-    while (parent.lastChild) {
-        parent.removeChild(parent.lastChild);
-    }
+  while (parent.lastChild) {
+    parent.removeChild(parent.lastChild);
+  }
 };
 
-var conditionsCleared = false;
+var allConditionsCleared = false;
 // var conditionsClear = false;
 
+// var checkClearedCondidtions = () => {
+//   if (
+//     backgroundColor === RVB[1]
+//      && shapesCount === 1
+//      && numberOfShapes === 6
+//      && backShapes === 3
+//      && outlineWeight >= 10
+//      && outlineWeight <= 30
+//   ) {
+//      allConditionsCleared = true;
+//   } else {
+//      allConditionsCleared = false;
+//   }
+// }
+
+let condition1Cleared = false;
+let condition2Cleared = false;
+let condition3Cleared = false;
+let condition4Cleared = false;
+let condition5Cleared = false;
+
+
+
+const checkIfAllCleared = (e) => {
+  return e === true;
+}
+
 var checkClearedCondidtions = () => {
-  if (
-    backgroundColor === RVB[1]
-    // && shapesCount === 1
-    // && numberOfShapes === 6
-    // && backShapes === 3
-    // && outlineWeight >= 10
-    // && outlineWeight <= 30
-  ) {
-     conditionsCleared = true;
+
+
+  // condition 1
+  if (backgroundColor === RVB[1]) {
+    condition1Cleared = true;
   } else {
-     conditionsCleared = false;
-  }
+    condition1Cleared = false;
+  };
+
+  //condition 2
+  if (shapesCount === 1) {
+    condition2Cleared = true;
+  } else {
+    condition2Cleared = false;
+  };
+
+  //condition 3
+  if (numberOfShapes === 6) {
+    condition3Cleared = true;
+  } else {
+    condition3Cleared = false;
+  };
+
+  //condition 4
+  if (backShapes === 2) {
+    condition4Cleared = true;
+  } else {
+    condition4Cleared = false;
+  };
+
+  //condition 5
+  if (outlineWeight == 10) {
+    condition5Cleared = true;
+  } else {
+    condition5Cleared = false;
+  };
+
+
+// regroupe toutes les conditions pour lancer un array.every()
+  let conditionsClearedArray = [
+    condition1Cleared,
+    condition2Cleared,
+    condition3Cleared,
+    condition4Cleared,
+    condition5Cleared,
+
+  ]
+
+// check if all conditions are cleared
+console.log(conditionsClearedArray);
+// console.log('check all conditions = ' + conditionsClearedArray.every(checkIfAllCleared))
+if (conditionsClearedArray.every(checkIfAllCleared)) {
+  allConditionsCleared = true;
+} else {
+  allConditionsCleared = false;
+}
+
 }
 
 const victoryBox = document.getElementById('victory-box');
@@ -359,21 +445,21 @@ const victoryBox = document.getElementById('victory-box');
 const victoryTriggered = () => {
   if (victoryTriggerAvailable) {
 
-  console.log('VICTORY TRIGGERED')
-  // window.alert('BAM VICTOIRE'); // alert n'est pas une bonne solution - ça fait sauter le plein écran
-  canvas.classList.add('victory-shake');
-  victoryBox.classList.remove('hide');
-  victoryBox.style.left = window.innerWidth/2 - 250 + "px";
-  victoryBox.style.top = window.innerHeight/2 - 200 + "px";
+    console.log('VICTORY TRIGGERED')
+    // window.alert('BAM VICTOIRE');  alert n'est pas une bonne solution - ça fait sauter le plein écran
+    canvas.classList.add('victory-shake');
+    victoryBox.classList.remove('hide');
+    victoryBox.style.left = window.innerWidth / 2 - 250 + "px";
+    victoryBox.style.top = window.innerHeight / 2 - 200 + "px";
 
-  removeChilds(leftContainer);
-  removeChilds(rightContainer);
+    removeChilds(leftContainer);
+    removeChilds(rightContainer);
+
+  }
 
 }
-  
-}
 
-// ————— BACK TO START SCREEN ————— 
+// ————— BACK TO START SCREEN —————
 
 const backToStart = () => {
   canvas.classList.remove('victory-shake');
@@ -388,7 +474,6 @@ function draw() {
 
   moduleSize = canvasSize / numberOfShapes;
 
-  // console.log(canvasSize);
 
   frameRate(5);
   background(backgroundColor);
@@ -451,7 +536,7 @@ function draw() {
 
   // ———— CHECK FOR VICTORY ———————
   checkClearedCondidtions();
-  if (conditionsCleared) {
+  if (allConditionsCleared) {
     victoryTriggered();
   }
 
