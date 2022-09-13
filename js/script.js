@@ -27,7 +27,7 @@ function setup() {
 }
 
 // fullscreen
-var fullscreenAvailable = true;
+var fullscreenAvailable = false;
 
 // ———— DÉFINITION VARIABLES À PERSONNALISER ————
 
@@ -541,3 +541,27 @@ function draw() {
   }
 
 }
+
+
+// —————— img to reproduce display —————— 
+
+let toggleImgToReproduceDisplay = document.getElementById('img-to-reproduce-display');
+
+let reproducePanelHide = toggleImgToReproduceDisplay.lastElementChild;
+
+
+toggleImgToReproduceDisplay.addEventListener('click', function(){
+
+  reproducePanelHide.classList.toggle('hide');
+
+})
+
+
+
+
+
+
+
+
+
+//

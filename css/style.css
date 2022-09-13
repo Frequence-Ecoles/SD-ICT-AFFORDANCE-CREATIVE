@@ -88,10 +88,12 @@ h1 {
   flex-direction: row-reverse;
 }
 
+
+
 canvas {
   /* background-color: blue; */
-  max-height: 85vh !important;
-  max-width: 85vh !important;
+  max-height: 75vh !important;
+  max-width: 75vh !important;
   width: 50vw;
   aspect-ratio: 1 / 1 !important;
 
@@ -103,6 +105,7 @@ canvas {
 
   transform-origin: center;
   /* transform: rotate(20deg); */
+  margin-top: 10vh;
 }
 
 .shake {
@@ -174,7 +177,7 @@ canvas {
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;
+  touch-action: manipul75ion;
 
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -273,4 +276,41 @@ canvas {
   25% { transform:  scale(1.01) rotate(-2deg); }
   30% { transform:  scale(1) rotate(0deg); }
   35% { transform: scale(1) translate(0) rotate(0); }
+}
+
+/* ———— display image to reproduce ———— */
+
+#img-to-reproduce-display {
+  position: absolute;
+  top: 5vh;
+  left: calc(50% - 15vh - 0.25rem);
+  background-color: white;
+  border-radius: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 100;
+}
+
+#img-to-reproduce-display button {
+  background: none;
+  border: none;
+  padding: 1rem;
+  width: 12rem;
+
+  font-weight: bold;
+}
+
+#img-to-reproduce-display img {
+  max-height: 30vh !important;
+  max-width: 30vh !important;
+  width: 50vw;
+  aspect-ratio: 1 / 1 !important;
+
+  border-radius: 1.2rem;
+  margin: 0.5rem;
+  margin-top:0;
 }
