@@ -1,3 +1,6 @@
+var fullscreenAvailable = true;
+
+
 // ———————— START SCREEN TOGGLE ————
 
 var victoryTriggerAvailable = false;
@@ -5,9 +8,11 @@ var victoryTriggerAvailable = false;
 const startScreen = document.getElementById('start-screen');
 const startBtn = document.getElementById('start-btn');
 
+// screen toggle
 startBtn.addEventListener('click', function() {
   startScreen.classList.add('hide');
   victoryBox.classList.add('hide');
+  modifyDisplayReproduce("visible");
   createButtons();
   victoryTriggerAvailable = true;
   randomize();
@@ -27,7 +32,6 @@ function setup() {
 }
 
 // fullscreen
-var fullscreenAvailable = false;
 
 // ———— DÉFINITION VARIABLES À PERSONNALISER ————
 
@@ -218,6 +222,7 @@ var drawRandom = () => {
 
   //
   outlineIndex = getRandomIntInclusive(1, 7);
+  console.log('outlineIndex ' + outlineIndex);
 
   if (randomizeIsActive) {
     draw();
@@ -310,6 +315,8 @@ var elem = document.body;
 document.addEventListener('click', function() {
   if (fullscreenAvailable) {
     requestFullScreen(elem);
+    // force landscape orientation
+    screen.orientation.lock("landscape");
     fullscreenAvailable = false;
   }
 })
@@ -444,7 +451,7 @@ const victoryBox = document.getElementById('victory-box');
 
 const victoryTriggered = () => {
   if (victoryTriggerAvailable) {
-
+    modifyDisplayReproduce("invisible");
     console.log('VICTORY TRIGGERED')
     // window.alert('BAM VICTOIRE');  alert n'est pas une bonne solution - ça fait sauter le plein écran
     canvas.classList.add('victory-shake');
@@ -464,6 +471,8 @@ const victoryTriggered = () => {
 const backToStart = () => {
   canvas.classList.remove('victory-shake');
   startScreen.classList.remove('hide');
+  modifyDisplayReproduce("visible-home");
+  reproducePanelHide.classList.remove('hide');
   randomize();
 }
 
@@ -556,6 +565,11 @@ toggleImgToReproduceDisplay.addEventListener('click', function(){
 
 })
 
+const modifyDisplayReproduce = (e) => {
+    toggleImgToReproduceDisplay.setAttribute("state", e) ;
+    console.log(toggleImgToReproduceDisplay);
+    reproducePanelHide.classList.add('hide');
+}
 
 
 

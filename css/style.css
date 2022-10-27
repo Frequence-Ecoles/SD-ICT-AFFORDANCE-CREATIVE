@@ -7,6 +7,7 @@
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
     outline: none !important;
+    user-select:none;
 }
 
 :root {
@@ -41,9 +42,18 @@ body {
   display: flex;
   flex-direction: column;
 
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 
+}
+
+#start-screen div {
+  display: flex;
+  flex-direction: column;
+  width: 33vw;
+  margin-right: 10vw;
+  align-items: center;
+  justify-content: center;
 }
 
 #start-screen h2 {
@@ -52,8 +62,10 @@ body {
   color: var(--borders);
   font-size: 4rem;
   font-weight: bold;
+  text-align: center;
+  margin-bottom: 10vh;
 
-  margin: 60px;
+  /* margin: 60px; */
 }
 
 #start-screen .controller-btn {
@@ -280,13 +292,13 @@ canvas {
 
 /* ———— display image to reproduce ———— */
 
-#img-to-reproduce-display {
+#img-to-reproduce-display[state="visible"] {
   position: absolute;
   top: 5vh;
-  left: calc(50% - 15vh - 0.25rem);
-  background-color: white;
-  border-radius: 2rem;
-
+  left: calc(50% - 20vh);
+  background-color: #FF3246;
+  border-radius: 1.5rem;
+  width: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -295,18 +307,60 @@ canvas {
   z-index: 100;
 }
 
+#img-to-reproduce-display[state="visible-home"] {
+  position: absolute;
+  top: calc(50% - 20vw);
+  left: 10vh;
+  background-color: #FF3246;
+  border-radius: 1.5rem;
+  width: 40vw;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 100;
+}
+
+#img-to-reproduce-display[state="visible-home"] button {
+  display: none!important;
+}
+
+#img-to-reproduce-display[state="visible-home"] img {
+  max-width: 98%  !important;
+  max-height: 98%  !important;
+  margin: 0 !important;
+
+}
+
+#img-to-reproduce-display[state="invisible"] {
+  display: none!important;
+}
+
 #img-to-reproduce-display button {
   background: none;
   border: none;
   padding: 1rem;
-  width: 12rem;
-
+  width: 100%;
+  color: white;
   font-weight: bold;
+  font-size: 1.3rem;
+
+  display:  flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#img-to-reproduce-display svg {
+  fill:white;
+  width: 2rem;
+  margin:0;
 }
 
 #img-to-reproduce-display img {
-  max-height: 30vh !important;
-  max-width: 30vh !important;
+  max-height: 38vh;
+  max-width: 38vh;
   width: 50vw;
   aspect-ratio: 1 / 1 !important;
 
