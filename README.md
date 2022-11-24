@@ -42,6 +42,20 @@ Le principe de l'interface est de reproduire un visuel affiché sur un autre éc
 - de la ***satisfaction*** et du ***soulagement*** à la réussite
 
 <!-- // ramenr ça dans le debrief -->
+
+##### Pour ça, il doit :
+
+- Comprendre que chaque bouton a une fonction distincte
+- Identifier quelles sont précisément ces fonctions
+- Mémoriser précisément quelle fonction correspond à quel bouton
+- Ajuster chaque paramètre pour qu'il corresponde au visuel à reproduire // il pourrait y avoir une sorte de jauge / barre de progression où chaque paramètre bien ajusté permettrait de progresser ou de remplir un point précis
+
+## Comment on débrief du jeu pour faire comprendre les notions visées ?
+
+- mettre en avant les difficultés liées à chaque point de la section ci-dessous
+- comparaison youtube
+
+
 ——————————————————————
 
 Texte sur écran de victoire
@@ -71,22 +85,6 @@ Tu connais ce symbole, et tu connais la fonction à laquelle il correspond. On d
 C'est ce qui te permet de naviguer même dans une interface que tu ne connais pas, car ces codes sont communs, et tu t'y habitues probablement depuis déjà plusieurs années.
 // faire passer ça en schéma
 
-// ramener rapport au corps - assimiliation de ces codes / intuition / corps - gestes 
+// ramener rapport au corps - assimiliation de ces codes / intuition / corps - gestes
 
 > [En images, pictogrammes, plusieurs symboles qu'on connait] ➔ ♡ ☆
-
-
-
-
-
-##### Pour ça, il doit :
-
-- Comprendre que chaque bouton a une fonction distincte
-- Identifier quelles sont précisément ces fonctions
-- Mémoriser précisément quelle fonction correspond à quel bouton
-- Ajuster chaque paramètre pour qu'il corresponde au visuel à reproduire // il pourrait y avoir une sorte de jauge / barre de progression où chaque paramètre bien ajusté permettrait de progresser ou de remplir un point précis
-
-## Comment on débrief du jeu pour faire comprendre les notions visées ?
-
-- mettre en avant les difficultés liées à chaque point de la section ci-dessous
-- comparaison youtube
